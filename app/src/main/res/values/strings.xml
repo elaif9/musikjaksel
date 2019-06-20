@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Musik Jaksel</string>
+    <string name="list">List Music Jaksel</string>
+    <string name="gallery">Music Gallery</string>
+    <string name="story">They Story</string>
 </resources>
