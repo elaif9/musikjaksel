@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_list:
                 break;
-            case R.id.action_gallery;
+            case R.id.action_gallery:
                 break;
             case R.id.action_story:
                 break;
