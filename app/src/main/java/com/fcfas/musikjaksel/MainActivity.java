@@ -2,11 +2,13 @@ package com.fcfas.musikjaksel;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.fcfas.musikjaksel.adapter.GridIndieAdapter;
 import com.fcfas.musikjaksel.adapter.ListIndieAdapter;
 import com.fcfas.musikjaksel.model.Indie;
 import com.fcfas.musikjaksel.model.IndieData;
@@ -46,12 +48,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_list:
+                showRecyclerList();
                 break;
             case R.id.action_gallery:
+                showRecyclerGrid();
                 break;
             case R.id.action_story:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showRecyclerGrid() {
+        rvCategory.setLayoutManager(new GridLayoutManager(this, 2));
+        GridIndieAdapter gridIndieAdapter = new GridIndieAdapter(list);
+        rvCategory.setAdapter(gridIndieAdapter);
     }
 }
