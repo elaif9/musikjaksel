@@ -1,5 +1,6 @@
 package com.fcfas.musikjaksel.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,14 +16,20 @@ import com.fcfas.musikjaksel.model.Indie;
 import java.util.ArrayList;
 
 public class GridIndieAdapter extends RecyclerView.Adapter<GridIndieAdapter.GridViewHolder> {
-
-
+    private Context context;
     private ArrayList<Indie> listIndie;
 
-    public GridIndieAdapter(ArrayList<Indie> listIndie) {
+    public ArrayList<Indie> getListIndie() {
+        return listIndie;
+    }
+
+    public void setListIndie(ArrayList<Indie> listIndie) {
         this.listIndie = listIndie;
     }
 
+    public GridIndieAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -33,19 +40,19 @@ public class GridIndieAdapter extends RecyclerView.Adapter<GridIndieAdapter.Grid
 
     @Override
     public void onBindViewHolder(@NonNull GridViewHolder holder, int position) {
-        Glide.with(holder.itemView.getContext())
-                .load(listIndie.get(position).getPhoto())
+        Glide.with(context)
+                .load(getListIndie().get(position).getPhoto())
                 .apply(new RequestOptions().override(350,550))
                 .into(holder.imgPhoto);
     }
 
     @Override
     public int getItemCount() {
-        return listIndie.size();
+        return getListIndie().size();
     }
 
     public class GridViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgPhoto;
+        public ImageView imgPhoto;
 
         public GridViewHolder(@NonNull View itemView) {
             super(itemView);

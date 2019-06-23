@@ -18,11 +18,14 @@ import com.fcfas.musikjaksel.model.Indie;
 
 import java.util.ArrayList;
 
-public class ListIndieAdapter extends RecyclerView.Adapter<ListIndieAdapter.CategoryViewHolder> {
-
-
+public class ListIndieAdapter extends
+        RecyclerView.Adapter<ListIndieAdapter.CategoryViewHolder>{
     private Context context;
     private ArrayList<Indie> listIndie;
+
+    public ListIndieAdapter(Context context) {
+        this.context = context;
+    }
 
     public ArrayList<Indie> getListIndie() {
         return listIndie;
@@ -31,11 +34,6 @@ public class ListIndieAdapter extends RecyclerView.Adapter<ListIndieAdapter.Cate
     public void setListIndie(ArrayList<Indie> listIndie) {
         this.listIndie = listIndie;
     }
-
-    public ListIndieAdapter(Context context) {
-        this.context = context;
-    }
-
 
     @NonNull
     @Override
@@ -47,7 +45,7 @@ public class ListIndieAdapter extends RecyclerView.Adapter<ListIndieAdapter.Cate
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int position) {
         categoryViewHolder.tvName.setText(getListIndie().get(position).getName());
-        categoryViewHolder.tvCategory.setText(getListIndie().get(position).getCategory());
+        categoryViewHolder.tvCategory.setText(getListIndie().get(position).getName());
 
         Glide.with(context)
                 .load(getListIndie().get(position).getPhoto())

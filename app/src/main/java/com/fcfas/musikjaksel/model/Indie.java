@@ -1,6 +1,9 @@
 package com.fcfas.musikjaksel.model;
 
-public class Indie {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Indie implements Parcelable {
     private String name, category, remarks, photo, linkcontent;
 
     public String getName() {
@@ -42,4 +45,37 @@ public class Indie {
     public void setLinkcontent(String linkcontent) {
         this.linkcontent = linkcontent;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.category);
+        dest.writeString(this.remarks);
+        dest.writeString(this.photo);
+        dest.writeString(this.linkcontent);
+    }
+    public Indie(){}
+    protected Indie(Parcel in){
+        this.name = in.readString();
+        this.category= in.readString();
+        this.remarks = in.readString();
+        this.photo = in.readString();
+        this.linkcontent = in.readString();
+    }
+
+    public static final Parcelable.Creator<Indie> CREATOR = new Parcelable.Creator<Indie>(){
+        @Override
+        public Indie createFromParcel(Parcel source){
+            return new Indie(source);
+        }
+        @Override
+        public Indie[] newArray(int size){
+            return new Indie[size];
+        }
+    };
 }
